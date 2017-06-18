@@ -14,6 +14,6 @@ describe('TodoList App', () => {
     browser.click('.todo-submit');
     const actual = browser.element('.todo').getText();
     const expected = 'Get better at testing';
-    expect(actual).toEqual(expected);
+    expect(actual).to.equal(expected);
   });
 });
