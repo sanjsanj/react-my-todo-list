@@ -9,5 +9,6 @@ describe('App', () => {
     };
 
     const component = shallow(<App state={initialState} submitTodo={jest.fn()} />);
+    expect(component).toHaveLength(1);
   });
 });
