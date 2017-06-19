@@ -8,7 +8,7 @@ describe('TodoList App', () => {
     expect(actualTitle).to.eql('ToDo List');
   });
 
-  it('Should allow me to create ToDo', () => {
+  it('Should allow me to create a ToDo', () => {
     browser.url('http://localhost:3000/');
     $('.todo-input').setValue('Get better at testing');
     browser.click('.todo-submit');

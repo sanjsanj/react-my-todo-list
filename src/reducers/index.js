@@ -1,13 +1,13 @@
 // import { types } from '../actions/';
-import constant from '../constants/';
+import constants from '../constants/';
 
-const initialState = {
+export const initialState = {
   todos: [],
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case constant.SUBMIT_TODO:
+    case constants.SUBMIT_TODO:
       return {
         ...state,
         todos: [

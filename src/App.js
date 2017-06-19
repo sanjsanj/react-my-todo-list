@@ -6,7 +6,7 @@ import TodoList from './components/todoList';
 
 import { actions } from './actions/';
 
-const App = ({ submitTodo, todos }) => (
+export const App = ({ submitTodo, todos }) => (
   <div>
     <h1>Todo list</h1>
     <AddTodo
