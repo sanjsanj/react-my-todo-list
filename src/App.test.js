@@ -8,7 +8,15 @@ describe('App', () => {
       todos: [],
     };
 
-    const component = shallow(<App state={initialState} submitTodo={jest.fn()} todos={[]} />);
+    const component = shallow(
+      <App
+        state={initialState}
+        submitTodo={jest.fn()}
+        todos={[]}
+        toggleTodo={jest.fn()}
+      />
+    );
+    
     expect(component).toHaveLength(1);
   });
 });

@@ -1,4 +1,5 @@
 export default {
   SUBMIT_TODO: 'SUBMIT_TODO',
   TOGGLE_TODO: 'TOGGLE_TODO',
+  DELETE_TODO: 'DELETE_TODO',
 };

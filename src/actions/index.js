@@ -17,4 +17,11 @@ export const actions = {
       id,
     };
   },
+
+  deleteTodo(id) {
+    return {
+      type: types.DELETE_TODO,
+      id,
+    };
+  },
 };

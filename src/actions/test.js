@@ -13,18 +13,24 @@ describe('Actions', () => {
   });
 
   it('Should create an action to toggle todo completion', () => {
-    const action = {
-      type: types.TOGGLE_TODO,
-      id: 1,
-    };
-
-    const expectedState = {
+    const expectedAction = {
       type: types.TOGGLE_TODO,
       id: 1,
     };
 
     actions.submitTodo('A todo');
 
-    expect(actions.toggleTodo(1)).toEqual(expectedState);
+    expect(actions.toggleTodo(1)).toEqual(expectedAction);
+  });
+
+  it('Should create an action delete a todo', () => {
+    const expectedAction = {
+      type: types.DELETE_TODO,
+      id: 1,
+    };
+
+    actions.submitTodo('A todo');
+
+    expect(actions.deleteTodo(1)).toEqual(expectedAction);
   });
 });

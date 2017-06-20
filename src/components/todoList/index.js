@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TodoList = ({ todos }) => {
+const TodoList = ({ todos, toggleTodo }) => {
   const todoItems = todos.map((todo) => {
     const completed = todo.completed ? ' completed' : '';
 
@@ -9,6 +9,7 @@ const TodoList = ({ todos }) => {
       <li
         key={todo.id}
         className={`todo${completed}`}
+        onClick={() => toggleTodo(todo.id)}
       >
         {todo.text}
       </li>
@@ -30,6 +31,7 @@ TodoList.propTypes = {
       completed: PropTypes.bool.isRequired,
     },
   )).isRequired,
+  toggleTodo: PropTypes.func.isRequired,
 };
 
 export default TodoList;

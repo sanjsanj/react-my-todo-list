@@ -126,4 +126,29 @@ describe('Reducer', () => {
       expect(reducer(startingState, action)).toEqual(expectedState);
     });
   });
+
+  describe('Delete todo', () => {
+    it('Should return state with the todo deleted', () => {
+      const startingState = {
+        todos: [
+          {
+            id: 1,
+            text: 'A todo',
+            completed: false,
+          },
+        ],
+      };
+
+      const action = {
+        type: types.DELETE_TODO,
+        id: 1,
+      };
+
+      const expectedState = {
+        todos: [],
+      };
+
+      expect(reducer(startingState, action)).toEqual(expectedState);
+    });
+  });
 });

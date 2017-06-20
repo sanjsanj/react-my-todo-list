@@ -34,6 +34,18 @@ export default function (state = initialState, action) {
         ],
       };
 
+    case types.DELETE_TODO:
+      return {
+        ...state,
+        todos: [
+          ...state.todos.filter((todo) => {
+            if (todo.id !== action.id) {
+              return todo;
+            }
+          }),
+        ],
+      };
+
     default:
       return state;
   }

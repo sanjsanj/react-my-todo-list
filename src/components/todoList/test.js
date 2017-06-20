@@ -14,6 +14,7 @@ describe('TodoList component', () => {
           completed: false,
         },
       ],
+    toggleTodo: jest.fn(),
   };
 
   beforeEach(() => {
@@ -38,7 +39,13 @@ describe('TodoList component', () => {
     });
 
     it('Should have completed class when item is completed', () => {
-      component = shallow(<TodoList todos={[{ id: 1, text: 'A todo', completed: true }]} />);
+      component = shallow(
+        <TodoList
+          todos={[{ id: 1, text: 'A todo', completed: true }]}
+          toggleTodo={jest.fn()}
+        />
+      );
+
       expect(component.find('li').hasClass('completed')).toEqual(true);
     });
   });

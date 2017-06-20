@@ -5,10 +5,6 @@ module.exports = {
     "plugins": [
         "react",
         "jsx-a11y",
-        "import",
-        "enzyme"
-    ],
-    "env": {
-        "enzyme": true
-    }
+        "import"
+    ]
 };
