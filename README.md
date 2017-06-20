@@ -1,8 +1,11 @@
-To start:
+Setup:
 ```
 npm install
+```
+
+To start app:
+```
 npm start
-http://localhost:3000/
 ```
 
 To unit test:
