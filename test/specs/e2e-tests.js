@@ -22,5 +22,9 @@ describe('TodoList App', () => {
   it('Should allow me to toggle my Todo to done', () => {
     $('.todo-input').setValue('Get better at testing');
     browser.click('.todo-submit');
+    const actual = browser.element('.todo.done');
+    expect(actual.state).to.equal('failure');
+    browser.click('.todo');
+    expect(actual.state).to.equal('success');
   });
 });

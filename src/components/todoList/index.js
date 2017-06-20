@@ -4,7 +4,7 @@ const TodoList = ({ todos }) => {
   const todoItems = todos.map(todo => (
     <li
       key={todo.id}
-      className="todo"
+      className="todo done"
     >
       {todo.text}
     </li>
