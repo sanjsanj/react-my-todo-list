@@ -10,4 +10,11 @@ export const actions = {
       text,
     };
   },
+
+  toggleTodo(id) {
+    return {
+      type: types.TOGGLE_TODO,
+      id,
+    };
+  },
 };

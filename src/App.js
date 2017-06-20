@@ -20,6 +20,13 @@ export const App = ({ submitTodo, todos }) => (
 
 App.propTypes = {
   submitTodo: PropTypes.func.isRequired,
+  todos: PropTypes.arrayOf(PropTypes.shape(
+    {
+      type: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      text: PropTypes.string.isRequired,
+    },
+  )).isRequired,
 };
 
 const mapStateToProps = state => state.todoListApp;
