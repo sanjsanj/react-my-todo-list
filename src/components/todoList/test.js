@@ -4,10 +4,22 @@ import TodoList from '.';
 
 describe('TodoList component', () => {
   let component;
+  
+  const props = {
+    todos:
+      [
+        {
+          id: 1,
+          text: 'A todo',
+          completed: false,
+        },
+      ],
+  };
 
   beforeEach(() => {
-    component = shallow(<TodoList todos={[]} />);
+    component = shallow(<TodoList {...props} />);
   });
+
   it('Should render', () => {
     expect(component.length).toEqual(1);
   });
@@ -17,7 +29,17 @@ describe('TodoList component', () => {
   });
 
   it('Should have a <li> for each todo', () => {
-    component = shallow(<TodoList todos={[{ id: 1, text: 'A todo' }]} />);
     expect(component.find('li').length).toEqual(1);
+  });
+
+  describe('Todo <li>', () => {
+    it('Should not have completed class when item is not completed', () => {
+      expect(component.find('li').hasClass('completed')).toEqual(false);
+    });
+
+    it('Should have completed class when item is completed', () => {
+      component = shallow(<TodoList todos={[{ id: 1, text: 'A todo', completed: true }]} />);
+      expect(component.find('li').hasClass('completed')).toEqual(true);
+    });
   });
 });

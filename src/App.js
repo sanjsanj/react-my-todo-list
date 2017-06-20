@@ -22,9 +22,9 @@ App.propTypes = {
   submitTodo: PropTypes.func.isRequired,
   todos: PropTypes.arrayOf(PropTypes.shape(
     {
-      type: PropTypes.string.isRequired,
       id: PropTypes.number.isRequired,
       text: PropTypes.string.isRequired,
+      completed: PropTypes.bool.isRequired,
     },
   )).isRequired,
 };
