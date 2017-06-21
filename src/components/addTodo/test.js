@@ -11,7 +11,7 @@ describe('AddTodo component', () => {
   });
 
   it('Should render successfully', () => {
-    expect(component.length).toEqual(1);
+    expect(component.exists()).toEqual(true);
   });
 
   it('Should have an input', () => {

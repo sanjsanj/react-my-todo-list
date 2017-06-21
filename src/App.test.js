@@ -3,20 +3,25 @@ import { shallow } from 'enzyme';
 import { App } from './App';
 
 describe('App', () => {
-  it('Should render', () => {
-    const initialState = {
-      todos: [],
-    };
+  let component;
 
-    const component = shallow(
+  const initialState = {
+    todos: [],
+  };
+
+  beforeEach(() => {
+    component = shallow(
       <App
         state={initialState}
         submitTodo={jest.fn()}
         todos={[]}
         toggleTodo={jest.fn()}
-      />
+        deleteTodo={jest.fn()}
+      />,
     );
-    
-    expect(component).toHaveLength(1);
+  });
+
+  it('Should render', () => {
+    expect(component.exists()).toEqual(true);
   });
 });
