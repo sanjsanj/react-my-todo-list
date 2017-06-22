@@ -4,10 +4,11 @@ import AddTodo from '.';
 
 describe('AddTodo component', () => {
   let component;
-  const mockFunction = jest.fn();
+  const submitMock = jest.fn();
+  const undeleteMock = jest.fn();
 
   beforeEach(() => {
-    component = shallow(<AddTodo submitTodo={mockFunction} />);
+    component = shallow(<AddTodo submitTodo={submitMock} undeleteTodo={undeleteMock} />);
   });
 
   it('Should render successfully', () => {
@@ -19,14 +20,30 @@ describe('AddTodo component', () => {
   });
 
   it('Should have a submit button', () => {
-    expect(component.find('button').length).toEqual(1);
+    expect(component.find('.todo-submit').length).toEqual(1);
   });
 
   it('Should call the submitTodo function when the button is clicked', () => {
-    component = mount(<AddTodo submitTodo={mockFunction} />);
+    component = mount(<AddTodo submitTodo={submitMock} undeleteTodo={undeleteMock} />);
 
-    expect(mockFunction.mock.calls.length).toEqual(0);
-    component.find('button').simulate('submit');
-    expect(mockFunction.mock.calls.length).toEqual(1);
+    expect(submitMock.mock.calls.length).toEqual(0);
+    component.find('.todo-submit').simulate('submit');
+    expect(submitMock.mock.calls.length).toEqual(1);
+  });
+
+  describe('Undelete button', () => {
+    it('Should exist', () => {
+      expect(component.find('.undelete-todo').exists()).toEqual(true);
+    });
+
+    it('Should have the right text', () => {
+      expect(component.find('.undelete-todo').text()).toEqual('Undelete');
+    });
+
+    it('Should call the undelete function', () => {
+      expect(undeleteMock.mock.calls.length).toEqual(0);
+      component.find('.undelete-todo').simulate('click');
+      expect(undeleteMock.mock.calls.length).toEqual(1);
+    });
   });
 });

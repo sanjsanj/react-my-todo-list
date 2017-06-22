@@ -22,6 +22,7 @@ describe('Reducer', () => {
             completed: false,
           },
         ],
+        deleted: {},
       };
 
       expect(reducer(undefined, action)).toEqual(expectedState);
@@ -137,6 +138,7 @@ describe('Reducer', () => {
             completed: false,
           },
         ],
+        deleted: {},
       };
 
       const action = {
@@ -146,6 +148,120 @@ describe('Reducer', () => {
 
       const expectedState = {
         todos: [],
+        deleted: {
+          id: 1,
+          text: 'A todo',
+          completed: false,
+        },
+      };
+
+      expect(reducer(startingState, action)).toEqual(expectedState);
+    });
+
+    it('Should return state correctly when no id is passed in', () => {
+      const startingState = {
+        todos: [
+          {
+            id: 1,
+            text: 'A todo',
+            completed: false,
+          },
+        ],
+        deleted: {},
+      };
+
+      const action = {
+        type: types.DELETE_TODO,
+      };
+
+      const expectedState = {
+        todos: [
+          {
+            id: 1,
+            text: 'A todo',
+            completed: false,
+          },
+        ],
+        deleted: {},
+      };
+
+      expect(reducer(startingState, action)).toEqual(expectedState);
+    });
+
+    it('Should return state correctly when incorrect id is passed in', () => {
+      const startingState = {
+        todos: [
+          {
+            id: 1,
+            text: 'A todo',
+            completed: false,
+          },
+        ],
+        deleted: {},
+      };
+
+      const action = {
+        type: types.DELETE_TODO,
+        id: 2,
+      };
+
+      const expectedState = {
+        todos: [
+          {
+            id: 1,
+            text: 'A todo',
+            completed: false,
+          },
+        ],
+        deleted: {},
+      };
+
+      expect(reducer(startingState, action)).toEqual(expectedState);
+    });
+  });
+
+  describe('Undelete todo', () => {
+    it('Should return state with the todo undeleted', () => {
+      const startingState = {
+        todos: [],
+        deleted: {
+          id: 1,
+          text: 'A todo',
+          completed: false,
+        },
+      };
+
+      const action = {
+        type: types.UNDELETE_TODO,
+      };
+
+      const expectedState = {
+        todos: [
+          {
+            id: 1,
+            text: 'A todo',
+            completed: false,
+          },
+        ],
+        deleted: {},
+      };
+
+      expect(reducer(startingState, action)).toEqual(expectedState);
+    });
+
+    it('Should return unchanged state when there is no deleted todo', () => {
+      const startingState = {
+        todos: [],
+        deleted: {},
+      };
+
+      const action = {
+        type: types.UNDELETE_TODO,
+      };
+
+      const expectedState = {
+        todos: [],
+        deleted: {},
       };
 
       expect(reducer(startingState, action)).toEqual(expectedState);

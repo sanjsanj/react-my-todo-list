@@ -18,7 +18,11 @@ const TodoList = ({ todos, toggleTodo, deleteTodo }) => {
         >
           Delete
         </button>
-        {todo.text}
+        <span
+          className="todo-text"
+        >
+          {todo.text}
+        </span>
       </li>
     );
   });

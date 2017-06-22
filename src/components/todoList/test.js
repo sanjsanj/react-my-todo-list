@@ -4,7 +4,8 @@ import TodoList from '.';
 
 describe('TodoList component', () => {
   let component;
-  const mockFunction = jest.fn();
+  const deleteMock = jest.fn();
+  const undeleteMock = jest.fn();
 
   const props = {
     todos:
@@ -16,7 +17,8 @@ describe('TodoList component', () => {
       },
     ],
     toggleTodo: jest.fn(),
-    deleteTodo: mockFunction,
+    deleteTodo: deleteMock,
+    undeleteTodo: undeleteMock,
   };
 
   beforeEach(() => {
@@ -51,7 +53,8 @@ describe('TodoList component', () => {
         <TodoList
           todos={[{ id: 1, text: 'A todo', completed: true }]}
           toggleTodo={jest.fn()}
-          deleteTodo={jest.fn()}
+          deleteTodo={deleteMock}
+          undeleteTodo={undeleteMock}
         />,
       );
 
@@ -70,9 +73,9 @@ describe('TodoList component', () => {
       });
 
       it('Should call the delete function', () => {
-        expect(mockFunction.mock.calls.length).toEqual(0);
+        expect(deleteMock.mock.calls.length).toEqual(0);
         listItem.find('.delete-todo').simulate('click');
-        expect(mockFunction.mock.calls.length).toEqual(1);
+        expect(deleteMock.mock.calls.length).toEqual(1);
       });
     });
   });

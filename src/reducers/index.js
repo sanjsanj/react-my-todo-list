@@ -2,6 +2,7 @@ import types from '../constants/';
 
 export const initialState = {
   todos: [],
+  deleted: {},
 };
 
 export default function (state = initialState, action) {
@@ -35,17 +36,39 @@ export default function (state = initialState, action) {
       };
 
     case types.DELETE_TODO:
+      if (action.id && (state.todos.filter(todo => todo.id === action.id).length)) {
+        return {
+          ...state,
+          todos: [
+            ...state.todos.filter((todo) => {
+              if (todo.id !== action.id) {
+                return todo;
+              }
+              return null;
+            }),
+          ],
+          deleted: state.todos[action.id - 1],
+        };
+      }
       return {
         ...state,
-        todos: [
-          ...state.todos.filter((todo) => {
-            if (todo.id !== action.id) {
-              return todo;
-            }
-            return null;
-          }),
-        ],
       };
+
+    case types.UNDELETE_TODO:
+      if (Object.keys(state.deleted).length) {
+        return {
+          ...state,
+          todos: [
+            ...state.todos,
+            state.deleted,
+          ],
+          deleted: {},
+        };
+      }
+      return {
+        ...state,
+      };
+
 
     default:
       return state;

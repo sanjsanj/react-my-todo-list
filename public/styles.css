@@ -2,6 +2,10 @@
   text-decoration: line-through;
 }
 
+.delete-todo {
+  margin-right: 12px;
+}
+
 .todo {
   user-select: none;
 }
