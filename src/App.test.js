@@ -18,6 +18,7 @@ describe('App', () => {
         toggleTodo={jest.fn()}
         deleteTodo={jest.fn()}
         undeleteTodo={jest.fn()}
+        deleted={{}}
       />,
     );
   });

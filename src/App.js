@@ -6,7 +6,7 @@ import TodoList from './components/todoList';
 
 import { actions } from './actions/';
 
-export const App = ({ submitTodo, todos, toggleTodo, deleteTodo, undeleteTodo }) => (
+export const App = ({ submitTodo, todos, toggleTodo, deleteTodo, undeleteTodo, deleted }) => (
   <div
     className="app"
   >
@@ -14,6 +14,7 @@ export const App = ({ submitTodo, todos, toggleTodo, deleteTodo, undeleteTodo })
     <AddTodo
       submitTodo={submitTodo}
       undeleteTodo={undeleteTodo}
+      deleted={deleted}
     />
     <TodoList
       todos={todos}
@@ -35,6 +36,15 @@ App.propTypes = {
   toggleTodo: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired,
   undeleteTodo: PropTypes.func.isRequired,
+  deleted: PropTypes.shape({
+    id: PropTypes.number,
+    text: PropTypes.string,
+    completed: PropTypes.bool,
+  }),
+};
+
+App.defaultProps = {
+  deleted: {},
 };
 
 const mapStateToProps = state => state.todoListApp;

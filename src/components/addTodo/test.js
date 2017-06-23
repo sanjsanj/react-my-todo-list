@@ -6,9 +6,10 @@ describe('AddTodo component', () => {
   let component;
   const submitMock = jest.fn();
   const undeleteMock = jest.fn();
+  const obj = {};
 
   beforeEach(() => {
-    component = shallow(<AddTodo submitTodo={submitMock} undeleteTodo={undeleteMock} />);
+    component = shallow(<AddTodo submitTodo={submitMock} undeleteTodo={undeleteMock} deleted={obj} />);
   });
 
   it('Should render successfully', () => {
@@ -24,7 +25,7 @@ describe('AddTodo component', () => {
   });
 
   it('Should call the submitTodo function when the button is clicked', () => {
-    component = mount(<AddTodo submitTodo={submitMock} undeleteTodo={undeleteMock} />);
+    component = mount(<AddTodo submitTodo={submitMock} undeleteTodo={undeleteMock} deleted={obj} />);
 
     expect(submitMock.mock.calls.length).toEqual(0);
     component.find('.todo-submit').simulate('submit');
@@ -44,6 +45,15 @@ describe('AddTodo component', () => {
       expect(undeleteMock.mock.calls.length).toEqual(0);
       component.find('.undelete-todo').simulate('click');
       expect(undeleteMock.mock.calls.length).toEqual(1);
+    });
+
+    it('Should be disabled when there is no deleted todo', () => {
+      const disabled = component.find('.undelete-todo').html().includes('disabled=""');
+      expect(disabled).toEqual(true);
+    });
+
+    it('Should not be disabled when there is a deleted todo', () => {
+
     });
   });
 });
