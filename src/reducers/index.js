@@ -36,7 +36,7 @@ export default function (state = initialState, action) {
       };
 
     case types.DELETE_TODO:
-      if (action.id && (state.todos.filter(todo => todo.id === action.id).length > 0)) {
+      if (action.id && (state.todos.filter(todo => todo.id === action.id).length)) {
         return {
           ...state,
           todos: [
@@ -68,7 +68,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
       };
-
 
     default:
       return state;

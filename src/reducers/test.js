@@ -1,4 +1,5 @@
 import reducer, { initialState } from '.';
+
 import types from '../constants/';
 
 describe('Reducer', () => {

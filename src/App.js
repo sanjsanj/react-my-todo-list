@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import AddTodo from './components/addTodo/';
 import TodoList from './components/todoList';
 

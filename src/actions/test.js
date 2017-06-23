@@ -1,15 +1,18 @@
 import { actions } from '.';
+
 import types from '../constants/';
 
 describe('Actions', () => {
+  const todoText = 'A todo';
+
   it('Should create an action to add a todo', () => {
     const expectedAction = {
       type: types.SUBMIT_TODO,
       id: 1,
-      text: 'A todo',
+      text: todoText,
     };
 
-    expect(actions.submitTodo('A todo')).toEqual(expectedAction);
+    expect(actions.submitTodo(todoText)).toEqual(expectedAction);
   });
 
   it('Should create an action to toggle todo completion', () => {
@@ -18,7 +21,7 @@ describe('Actions', () => {
       id: 1,
     };
 
-    actions.submitTodo('A todo');
+    actions.submitTodo(todoText);
 
     expect(actions.toggleTodo(1)).toEqual(expectedAction);
   });
@@ -29,7 +32,7 @@ describe('Actions', () => {
       id: 1,
     };
 
-    actions.submitTodo('A todo');
+    actions.submitTodo(todoText);
 
     expect(actions.deleteTodo(1)).toEqual(expectedAction);
   });
@@ -39,7 +42,7 @@ describe('Actions', () => {
       type: types.UNDELETE_TODO,
     };
 
-    actions.submitTodo('A todo');
+    actions.submitTodo(todoText);
 
     expect(actions.undeleteTodo()).toEqual(expectedAction);
   });

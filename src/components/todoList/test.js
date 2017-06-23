@@ -1,9 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+
 import TodoList from '.';
 
 describe('TodoList component', () => {
-  let component;
+  const toggleMock = jest.fn();
   const deleteMock = jest.fn();
   const undeleteMock = jest.fn();
 
@@ -16,14 +17,12 @@ describe('TodoList component', () => {
         completed: false,
       },
     ],
-    toggleTodo: jest.fn(),
+    toggleTodo: toggleMock,
     deleteTodo: deleteMock,
     undeleteTodo: undeleteMock,
   };
 
-  beforeEach(() => {
-    component = shallow(<TodoList {...props} />);
-  });
+  let component = shallow(<TodoList {...props} />);
 
   it('Should render', () => {
     expect(component.exists()).toEqual(true);

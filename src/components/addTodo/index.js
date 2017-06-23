@@ -50,4 +50,8 @@ AddTodo.propTypes = {
   }),
 };
 
+AddTodo.defaultProps = {
+  deleted: {},
+};
+
 export default AddTodo;

@@ -1,29 +1,28 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+
 import { App } from './App';
 
 describe('App', () => {
-  let component;
-
   const initialState = {
     todos: [],
   };
 
-  beforeEach(() => {
-    component = shallow(
+  const mockFunction = jest.fn();
+
+  it('Should render', () => {
+    const component = shallow(
       <App
         state={initialState}
-        submitTodo={jest.fn()}
+        submitTodo={mockFunction}
         todos={[]}
-        toggleTodo={jest.fn()}
-        deleteTodo={jest.fn()}
-        undeleteTodo={jest.fn()}
+        toggleTodo={mockFunction}
+        deleteTodo={mockFunction}
+        undeleteTodo={mockFunction}
         deleted={{}}
       />,
     );
-  });
 
-  it('Should render', () => {
     expect(component.exists()).toEqual(true);
   });
 });
