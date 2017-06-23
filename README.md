@@ -3,17 +3,17 @@
 npm install
 ```
 
-### To start app:
+### Start app:
 ```
 npm start
 ```
 
-### To unit test:
+### Unit test:
 ```
 npm test
 ```
 
-### To e2e/feature test:
+### e2e/feature test:
 ```
 npm selenium-setup   // run once only
 npm selenium-start   // app must also be started with npm start
