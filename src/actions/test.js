@@ -21,8 +21,6 @@ describe('Actions', () => {
       id: 1,
     };
 
-    actions.submitTodo(todoText);
-
     expect(actions.toggleTodo(1)).toEqual(expectedAction);
   });
 
@@ -32,8 +30,6 @@ describe('Actions', () => {
       id: 1,
     };
 
-    actions.submitTodo(todoText);
-
     expect(actions.deleteTodo(1)).toEqual(expectedAction);
   });
 
@@ -41,8 +37,6 @@ describe('Actions', () => {
     const expectedAction = {
       type: types.UNDELETE_TODO,
     };
-
-    actions.submitTodo(todoText);
 
     expect(actions.undeleteTodo()).toEqual(expectedAction);
   });
