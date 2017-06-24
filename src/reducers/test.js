@@ -3,6 +3,8 @@ import reducer, { initialState } from '.';
 import types from '../constants/';
 
 describe('Reducer', () => {
+  const todoText = 'A todo';
+
   it('Should return the initial state when no action passed', () => {
     expect(reducer(undefined, {})).toEqual(initialState);
   });
@@ -12,18 +14,19 @@ describe('Reducer', () => {
       const action = {
         type: types.SUBMIT_TODO,
         id: 1,
-        text: 'A todo',
+        text: todoText,
       };
 
       const expectedState = {
         todos: [
           {
             id: 1,
-            text: 'A todo',
+            text: todoText,
             completed: false,
           },
         ],
         deleted: {},
+        inputText: '',
       };
 
       expect(reducer(undefined, action)).toEqual(expectedState);
@@ -36,7 +39,7 @@ describe('Reducer', () => {
         todos: [
           {
             id: 1,
-            text: 'A todo',
+            text: todoText,
             completed: false,
           },
         ],
@@ -51,7 +54,7 @@ describe('Reducer', () => {
         todos: [
           {
             id: 1,
-            text: 'A todo',
+            text: todoText,
             completed: true,
           },
         ],
@@ -65,7 +68,7 @@ describe('Reducer', () => {
         todos: [
           {
             id: 1,
-            text: 'A todo',
+            text: todoText,
             completed: true,
           },
         ],
@@ -80,7 +83,7 @@ describe('Reducer', () => {
         todos: [
           {
             id: 1,
-            text: 'A todo',
+            text: todoText,
             completed: false,
           },
         ],
@@ -94,7 +97,7 @@ describe('Reducer', () => {
         todos: [
           {
             id: 1,
-            text: 'A todo',
+            text: todoText,
             completed: false,
           },
           {
@@ -109,7 +112,7 @@ describe('Reducer', () => {
         todos: [
           {
             id: 1,
-            text: 'A todo',
+            text: todoText,
             completed: true,
           },
           {
@@ -135,7 +138,7 @@ describe('Reducer', () => {
         todos: [
           {
             id: 1,
-            text: 'A todo',
+            text: todoText,
             completed: false,
           },
         ],
@@ -151,7 +154,7 @@ describe('Reducer', () => {
         todos: [],
         deleted: {
           id: 1,
-          text: 'A todo',
+          text: todoText,
           completed: false,
         },
       };
@@ -164,7 +167,7 @@ describe('Reducer', () => {
         todos: [
           {
             id: 1,
-            text: 'A todo',
+            text: todoText,
             completed: false,
           },
         ],
@@ -179,7 +182,7 @@ describe('Reducer', () => {
         todos: [
           {
             id: 1,
-            text: 'A todo',
+            text: todoText,
             completed: false,
           },
         ],
@@ -194,7 +197,7 @@ describe('Reducer', () => {
         todos: [
           {
             id: 1,
-            text: 'A todo',
+            text: todoText,
             completed: false,
           },
         ],
@@ -210,7 +213,7 @@ describe('Reducer', () => {
         todos: [
           {
             id: 1,
-            text: 'A todo',
+            text: todoText,
             completed: false,
           },
         ],
@@ -227,7 +230,7 @@ describe('Reducer', () => {
         todos: [],
         deleted: {
           id: 1,
-          text: 'A todo',
+          text: todoText,
           completed: false,
         },
       };
@@ -240,7 +243,7 @@ describe('Reducer', () => {
         todos: [
           {
             id: 1,
-            text: 'A todo',
+            text: todoText,
             completed: false,
           },
         ],
@@ -263,6 +266,50 @@ describe('Reducer', () => {
       const expectedState = {
         todos: [],
         deleted: {},
+      };
+
+      expect(reducer(startingState, action)).toEqual(expectedState);
+    });
+  });
+
+  describe('Input changed', () => {
+    it('Should return correct state when no text is input', () => {
+      const startingState = {
+        todos: [],
+        deleted: {},
+        text: '',
+      };
+
+      const action = {
+        type: types.INPUT_CHANGED,
+        text: '',
+      };
+
+      const expectedState = {
+        todos: [],
+        deleted: {},
+        text: '',
+      };
+
+      expect(reducer(startingState, action)).toEqual(expectedState);
+    });
+
+    it('Should return correct state when some text is input', () => {
+      const startingState = {
+        todos: [],
+        deleted: {},
+        inputText: '',
+      };
+
+      const action = {
+        type: types.INPUT_CHANGED,
+        inputText: todoText,
+      };
+
+      const expectedState = {
+        todos: [],
+        deleted: {},
+        inputText: todoText,
       };
 
       expect(reducer(startingState, action)).toEqual(expectedState);

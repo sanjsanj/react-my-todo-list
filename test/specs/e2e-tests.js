@@ -15,6 +15,15 @@ describe('TodoList App', () => {
     expect(actualTitle).to.eql('ToDo List');
   });
 
+  it('Should disable the add todo button when no text is entered', () => {
+    expect(browser.isEnabled('.todo-submit')).to.equal(false);
+  });
+
+  it('Should enable the add todo button when text is entered', () => {
+    browser.element('.todo-input').setValue('Get better at testing');
+    expect(browser.isEnabled('.todo-submit')).to.equal(true);
+  });
+
   it('Should allow me to create a Todo', () => {
     browser.element('.todo-input').setValue('Get better at testing');
     browser.click('.todo-submit');
@@ -24,7 +33,7 @@ describe('TodoList App', () => {
     expect(actual).to.equal(expected);
   });
 
-  it('Should set new todos to incomplete', () => {
+  it('Should create new todos as incomplete', () => {
     browser.element('.todo-input').setValue('Get better at testing');
     browser.click('.todo-submit');
     actual = browser.element('.completed');

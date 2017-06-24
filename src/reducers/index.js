@@ -3,6 +3,7 @@ import types from '../constants/';
 export const initialState = {
   todos: [],
   deleted: {},
+  inputText: '',
 };
 
 export default function (state = initialState, action) {
@@ -18,6 +19,7 @@ export default function (state = initialState, action) {
             completed: false,
           },
         ],
+        inputText: '',
       };
 
     case types.TOGGLE_TODO:
@@ -63,6 +65,17 @@ export default function (state = initialState, action) {
             state.deleted,
           ],
           deleted: {},
+        };
+      }
+      return {
+        ...state,
+      };
+
+    case types.INPUT_CHANGED:
+      if (action.inputText) {
+        return {
+          ...state,
+          inputText: action.inputText,
         };
       }
       return {

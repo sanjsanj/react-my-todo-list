@@ -7,9 +7,18 @@ describe('AddTodo component', () => {
   let component;
   const submitMock = jest.fn();
   const undeleteMock = jest.fn();
+  const changeMock = jest.fn();
 
   beforeEach(() => {
-    component = shallow(<AddTodo submitTodo={submitMock} undeleteTodo={undeleteMock} deleted={{}} />);
+    component = shallow(
+      <AddTodo
+        submitTodo={submitMock}
+        undeleteTodo={undeleteMock}
+        deleted={{}}
+        inputText=""
+        inputChanged={changeMock}
+      />,
+    );
   });
 
   it('Should render successfully', () => {
@@ -20,16 +29,47 @@ describe('AddTodo component', () => {
     expect(component.find('input').length).toEqual(1);
   });
 
-  it('Should have a submit button', () => {
-    expect(component.find('.todo-submit').length).toEqual(1);
-  });
+  describe('Add todo button', () => {
+    it('Should exist', () => {
+      expect(component.find('.todo-submit').length).toEqual(1);
+    });
 
-  it('Should call the submitTodo function when the button is clicked', () => {
-    component = mount(<AddTodo submitTodo={submitMock} undeleteTodo={undeleteMock} deleted={{}} />);
+    it('Should be disabled when there is no text in the input', () => {
+      const disabled = component.find('.todo-submit').html().includes('disabled=""');
+      expect(disabled).toEqual(true);
+    });
 
-    expect(submitMock.mock.calls.length).toEqual(0);
-    component.find('form').simulate('submit');
-    expect(submitMock.mock.calls.length).toEqual(1);
+    it('Should not be disabled when there is text in the input', () => {
+      component = shallow(
+        <AddTodo
+          submitTodo={submitMock}
+          undeleteTodo={undeleteMock}
+          deleted={{}}
+          inputText="A todo"
+          inputChanged={changeMock}
+        />,
+      );
+
+      const disabled = component.find('.todo-submit').html().includes('disabled=""');
+
+      expect(disabled).toEqual(false);
+    });
+
+    it('Should call the submitTodo function when clicked', () => {
+      component = mount(
+        <AddTodo
+          submitTodo={submitMock}
+          undeleteTodo={undeleteMock}
+          deleted={{}}
+          inputText=""
+          inputChanged={changeMock}
+        />,
+      );
+
+      expect(submitMock.mock.calls.length).toEqual(0);
+      component.find('form').simulate('submit');
+      expect(submitMock.mock.calls.length).toEqual(1);
+    });
   });
 
   describe('Undelete button', () => {
@@ -53,7 +93,16 @@ describe('AddTodo component', () => {
         completed: false,
       };
 
-      component = shallow(<AddTodo submitTodo={submitMock} undeleteTodo={undeleteMock} deleted={deletedTodo} />);
+      component = shallow(
+        <AddTodo
+          submitTodo={submitMock}
+          undeleteTodo={undeleteMock}
+          deleted={deletedTodo}
+          inputText=""
+          inputChanged={changeMock}
+        />,
+      );
+
       const disabled = component.find('.undelete-todo').html().includes('disabled=""');
 
       expect(disabled).toEqual(false);

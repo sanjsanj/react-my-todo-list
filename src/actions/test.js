@@ -40,4 +40,13 @@ describe('Actions', () => {
 
     expect(actions.undeleteTodo()).toEqual(expectedAction);
   });
+
+  it('Should create an action to store input text', () => {
+    const expectedAction = {
+      type: types.INPUT_CHANGED,
+      inputText: todoText,
+    };
+
+    expect(actions.inputChanged(todoText)).toEqual(expectedAction);
+  });
 });

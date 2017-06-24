@@ -30,4 +30,11 @@ export const actions = {
       type: types.UNDELETE_TODO,
     };
   },
+
+  inputChanged(inputText) {
+    return {
+      type: types.INPUT_CHANGED,
+      inputText,
+    };
+  },
 };

@@ -7,22 +7,35 @@ import TodoList from './components/todoList';
 
 import { actions } from './actions/';
 
-export const App = ({ submitTodo, todos, toggleTodo, deleteTodo, undeleteTodo, deleted }) => (
-  <div
-    className="app"
-  >
-    <h1>Todo list</h1>
-    <AddTodo
-      submitTodo={submitTodo}
-      undeleteTodo={undeleteTodo}
-      deleted={deleted}
-    />
-    <TodoList
-      todos={todos}
-      toggleTodo={toggleTodo}
-      deleteTodo={deleteTodo}
-    />
-  </div>
+export const App = (
+  {
+    submitTodo,
+    todos,
+    toggleTodo,
+    deleteTodo,
+    undeleteTodo,
+    deleted,
+    inputText,
+    inputChanged,
+  }) => (
+
+    <div
+      className="app"
+    >
+      <h1>Todo list</h1>
+      <AddTodo
+        submitTodo={submitTodo}
+        undeleteTodo={undeleteTodo}
+        deleted={deleted}
+        inputText={inputText}
+        inputChanged={inputChanged}
+      />
+      <TodoList
+        todos={todos}
+        toggleTodo={toggleTodo}
+        deleteTodo={deleteTodo}
+      />
+    </div>
 );
 
 App.propTypes = {
@@ -42,6 +55,8 @@ App.propTypes = {
     text: PropTypes.string,
     completed: PropTypes.bool,
   }),
+  inputText: PropTypes.string.isRequired,
+  inputChanged: PropTypes.func.isRequired,
 };
 
 App.defaultProps = {
@@ -67,6 +82,11 @@ const mapDispatchToProps = dispatch => ({
 
   undeleteTodo: () => {
     dispatch(actions.undeleteTodo());
+  },
+
+  inputChanged: (inputText) => {
+    console.log(inputText);
+    dispatch(actions.inputChanged(inputText));
   },
 });
 

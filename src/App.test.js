@@ -20,6 +20,8 @@ describe('App', () => {
         deleteTodo={mockFunction}
         undeleteTodo={mockFunction}
         deleted={{}}
+        inputText=""
+        inputChanged={mockFunction}
       />,
     );
 
