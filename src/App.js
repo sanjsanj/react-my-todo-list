@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import AddTodo from './components/addTodo/';
 import TodoList from './components/todoList';
 
-import { actions } from './actions/';
+import actions from './actions/';
 
 export const App = (
   {

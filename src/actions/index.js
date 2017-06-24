@@ -2,11 +2,16 @@ import types from '../constants/';
 
 let todoId = 0;
 
-export const actions = {
+const nextId = () => {
+  todoId += 1;
+  return todoId;
+};
+
+const actions = {
   submitTodo(text) {
     return {
       type: types.SUBMIT_TODO,
-      id: todoId += 1,
+      id: nextId(),
       text,
     };
   },
@@ -25,7 +30,7 @@ export const actions = {
     };
   },
 
-  undeleteTodo(id) {
+  undeleteTodo() {
     return {
       type: types.UNDELETE_TODO,
     };
@@ -38,3 +43,5 @@ export const actions = {
     };
   },
 };
+
+export default actions;

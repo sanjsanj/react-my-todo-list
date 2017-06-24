@@ -1,3 +1,5 @@
+/* global expect, it, describe */
+
 import reducer, { initialState } from '.';
 
 import types from '../constants/';

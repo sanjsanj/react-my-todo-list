@@ -1,4 +1,6 @@
-import { actions } from '.';
+/* global expect, it, describe */
+
+import actions from '.';
 
 import types from '../constants/';
 
