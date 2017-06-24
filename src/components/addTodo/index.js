@@ -16,6 +16,7 @@ const AddTodo = ({ submitTodo, undeleteTodo, deleted }) => {
       >
         <input
           className="todo-input"
+          placeholder="Type todos here"
           ref={(element) => {
             input = element;
           }}

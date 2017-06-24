@@ -1,3 +1,11 @@
+.todo-input {
+  margin-right: 10px;
+}
+
+.todo-submit {
+  margin-right: 10px;  
+}
+
 .completed {
   text-decoration: line-through;
 }
@@ -8,4 +16,5 @@
 
 .todo {
   user-select: none;
+  margin: 5px 0;
 }
