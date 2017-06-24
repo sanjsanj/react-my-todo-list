@@ -1,6 +1,6 @@
 /* global expect, it, describe */
 
-import reducer, { initialState } from '.';
+import { reducer, initialState } from '.';
 
 import types from '../constants/';
 
@@ -12,7 +12,7 @@ describe('Reducer', () => {
   });
 
   describe('Submit todo', () => {
-    it('Should return the state with the new todo', () => {
+    it('Should return the correct state when text is provided', () => {
       const action = {
         type: types.SUBMIT_TODO,
         id: 1,
@@ -27,6 +27,38 @@ describe('Reducer', () => {
             completed: false,
           },
         ],
+        deleted: {},
+        inputText: '',
+      };
+
+      expect(reducer(undefined, action)).toEqual(expectedState);
+    });
+
+    it('Should return the correct state when text is empty', () => {
+      const action = {
+        type: types.SUBMIT_TODO,
+        id: 1,
+        text: '',
+      };
+
+      const expectedState = {
+        todos: [],
+        deleted: {},
+        inputText: '',
+      };
+
+      expect(reducer(undefined, action)).toEqual(expectedState);
+    });
+
+    it('Should return the correct state when text is whitespace', () => {
+      const action = {
+        type: types.SUBMIT_TODO,
+        id: 1,
+        text: ' ',
+      };
+
+      const expectedState = {
+        todos: [],
         deleted: {},
         inputText: '',
       };

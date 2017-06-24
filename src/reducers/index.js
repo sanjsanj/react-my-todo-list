@@ -1,4 +1,5 @@
 import types from '../constants/';
+import isNullOrWhitespace from '../helpers/';
 
 export const initialState = {
   todos: [],
@@ -6,9 +7,14 @@ export const initialState = {
   inputText: '',
 };
 
-export default function (state = initialState, action) {
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case types.SUBMIT_TODO:
+      if (isNullOrWhitespace(action.text)) {
+        return {
+          ...state,
+        };
+      }
       return {
         ...state,
         todos: [
@@ -85,4 +91,6 @@ export default function (state = initialState, action) {
     default:
       return state;
   }
-}
+};
+
+export default reducer;
