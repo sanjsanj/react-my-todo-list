@@ -17,7 +17,7 @@ const AddTodo = ({ submitTodo, undeleteTodo, deleted, inputText, inputChanged })
       >
         <input
           className="todo-input"
-          placeholder="Type todos here"
+          placeholder="I'm going to..."
           ref={(element) => {
             input = element;
           }}

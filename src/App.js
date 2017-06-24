@@ -85,7 +85,6 @@ const mapDispatchToProps = dispatch => ({
   },
 
   inputChanged: (inputText) => {
-    console.log(inputText);
     dispatch(actions.inputChanged(inputText));
   },
 });
