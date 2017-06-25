@@ -1,13 +1,18 @@
+body {
+  background-color: #e4e4e4;
+}
+
 .todo-input {
   margin-right: 10px;
 }
 
 .todo-submit {
-  margin-right: 10px;  
+  margin-right: 10px;
 }
 
 .completed {
   text-decoration: line-through;
+  color: #ababab;
 }
 
 .delete-todo {
